@@ -26,3 +26,46 @@ int main(){
     sort(n,a);
     printf("The second largest element in the array is: %d",a[n-2]);
 }
+
+2.//Longest palindrome string
+#include <stdio.h>
+#include <string.h>
+#define MAX_LIMIT 50
+
+int checkpal(char str[MAX_LIMIT], int low, int high) {
+    while (low < high) {
+        if (str[low] != str[high])
+            return 0;
+        low++;
+        high--;
+    }
+    return 1;
+}
+
+void longpal(char str[MAX_LIMIT], int n) {
+    int maxLen = 1, start = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = i; j < n; j++) {
+            if (checkpal(str, i, j) && (j - i + 1) > maxLen) {
+                start = i;
+                maxLen = j - i + 1;
+            }
+        }
+    }
+
+    char b[100];
+    strncpy(b, str + start, maxLen);
+    b[maxLen] = '\0';
+    printf("Longest palindrome substring is: %s\n", b);
+}
+
+int main() {
+    char str[MAX_LIMIT];
+    fgets(str, MAX_LIMIT, stdin);
+    str[strcspn(str, "\n")] = '\0'; // Remove newline
+
+    int n = strlen(str);
+    longpal(str, n);
+
+    return 0;
+}
