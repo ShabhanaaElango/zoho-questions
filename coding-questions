@@ -101,4 +101,36 @@ int main() {
     removeDuplicates(arr,n);    
     return 0;
 }
+4.//subarray with given sum:
+#include <stdio.h>
+
+int sum(int n,int arr[100],int target){
+    for(int i=0;i<n;i++){
+        int current=0;
+        for(int j=i;j<n;j++){
+            current=current+arr[j];
+            if(current==target){
+                printf("The sum is from index %d to %d\n",i,j);
+                for(int k=i;k<=j;k++){
+                    printf("%d ",arr[k]);
+                }
+                printf("\n");
+            }
+            
+        }
+    }
+}
+
+int main() {
+    int n, arr[100],target;
+    scanf("%d",&n);
+    printf("Enter the target:");
+    scanf("%d",&target);
+    for(int i=0;i<n;i++){
+        scanf("%d",&arr[i]);
+    }
+    sum(n,arr,target);
+
+    return 0;
+}
 
