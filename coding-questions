@@ -69,3 +69,36 @@ int main() {
 
     return 0;
 }
+3.//Remove duplicates in an array:
+#include <stdio.h>
+
+int removeDuplicates(int arr[], int n) {
+    for(int i=0;i<n-1;i++){
+         for(int j=i+1;j<n;j++){
+         if(arr[i]>arr[j]){
+             arr[i]=arr[i]-arr[j];
+             arr[j]=arr[i]+arr[j];
+             arr[i]=arr[j]-arr[i];                       
+         }
+     }
+     }
+    int idx = 1; 
+    for (int i = 1; i < n; i++) {
+        if (arr[i] != arr[i - 1]) {
+            arr[idx++] = arr[i];
+        }
+    }
+    int newSize =idx;    
+    for (int i = 0; i < newSize; i++) 
+        printf("%d ", arr[i]);
+}
+int main() {
+    int n, arr[100] ;
+    scanf("%d",&n);
+    for(int i=0;i<n;i++){
+        scanf("%d",&arr[i]);
+    }
+    removeDuplicates(arr,n);    
+    return 0;
+}
+
